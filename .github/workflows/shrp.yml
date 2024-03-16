@@ -26,6 +26,7 @@ on:
         options:
         - shrp-12.1
         - v3_11.0
+        - v3_10.0
       DEVICE_TREE:
         description: 'Custom Recovery Tree' # Your already made Device Tree for TWRP
         required: true
@@ -150,31 +151,19 @@ jobs:
         echo "Done building your ${{ github.event.inputs.BUILD_TARGET }}.img"
       working-directory: ${{ steps.pwd.outputs.workdir }}
       
-    - name: Set Properties # Output will be use in final name of recovery.
-      id: props
-      run: |
-        echo "date=$(date +%Y%m%d)" >> $GITHUB_OUTPUT
-      
-    - name: Renaming into TWRP
-      run: |
-        cd out/target/product/${{ github.event.inputs.DEVICE_NAME }}
-        mv ${{ github.event.inputs.BUILD_TARGET }}.img ${{ github.event.inputs.MANIFEST_BRANCH }}_3.7.0-v000-${{ github.event.inputs.DEVICE_NAME }}-${{ steps.props.outputs.date }}.img
-        echo "Done renaming into ${{ github.event.inputs.MANIFEST_BRANCH }}_3.7.0-v000-${{ github.event.inputs.DEVICE_NAME }}-${{ steps.props.outputs.date }}.img"
-      working-directory: ${{ steps.pwd.outputs.workdir }}
-      
     - name: Upload to Release
-      uses: ncipollo/release-action@v1.11.1
+      uses: softprops/action-gh-release@v1
       with:
-        artifacts: workspace/out/target/product/${{ github.event.inputs.DEVICE_NAME }}/${{ github.event.inputs.MANIFEST_BRANCH }}*.img
-        name: Unofficial-Alpha TWRP for ${{ github.event.inputs.DEVICE_NAME }} - Build ${{ steps.props.outputs.date }} / ${{ github.run_id }}
-        draft: false
-        prerelease: true
-        tag: ${{ github.run_id }}-${{ steps.props.outputs.date }}
-        token: ${{ secrets.GITHUB_TOKEN }}
+        files: | 
+          workspace/out/target/product/${{ github.event.inputs.DEVICE_NAME }}/${{ github.event.inputs.BUILD_TARGET }}.img
+        name: ${{ github.event.inputs.DEVICE_NAME }}-${{ github.run_id }}
+        tag_name: ${{ github.run_id }}
         body: |
+          Manifest: ${{ github.event.inputs.MANIFEST_BRANCH }}
           Device: ${{ github.event.inputs.DEVICE_NAME }}
-          Manifest: ${{ github.event.inputs.MANIFEST_URL }} -b ${{ github.event.inputs.MANIFEST_BRANCH }}
-          Status: Alpha - Test it Yourself.
+          Target: ${{ github.event.inputs.BUILD_TARGET }}.img
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Link of Release
       run: |
