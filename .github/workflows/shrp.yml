@@ -17,7 +17,7 @@ on:
         type: choice
         options:
         - https://github.com/SHRP/manifest.git
-        - empty
+        - https://github.com/jangotek/shrp.git
       MANIFEST_BRANCH:
         description: 'Manifest Branch'
         required: true
