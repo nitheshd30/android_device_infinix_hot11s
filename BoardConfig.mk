@@ -160,3 +160,30 @@ TW_HAS_MTP := true
 # Debug
 TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
+
+#shrp
+# Path of your SHRP Tree
+SHRP_PATH := device/infinix/X6812
+# Device codename *
+SHRP_DEVICE_CODE := X6812
+# Maintainer name *
+SHRP_MAINTAINER := nitheshd30
+# Recovery Type (It can be A/B or A_only) [Only for About Section] *
+SHRP_DEVICE_TYPE := A/B
+# Recovery Type (It can be treble,normal,SAR) [Only for About Section] *
+SHRP_REC_TYPE := Treble
+
+SHRP_AB := true
+# Notch
+SHRP_NOTCH := true
+# EDL
+SHRP_EDL_MODE := 1
+
+SHRP_INTERNAL := /sdcard
+SHRP_EXTERNAL := /external_sd
+SHRP_OTG := /usb-otg
+SHRP_FLASH := 1
+# Dark Mode
+SHRP_DARK := true
+# Shrp official
+#SHRP_OFFICIAL := true
