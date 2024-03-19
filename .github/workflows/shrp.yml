@@ -31,6 +31,7 @@ on:
         options:
         - master
         - shrp
+        - v3-11.0
       DEVICE_PATH:
         description: 'Specify your Device Path' # As is, just like your DEVICE_PATH in your BoardConfig.mk
         required: true
