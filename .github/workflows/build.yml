@@ -22,6 +22,7 @@ on:
         default: ''
         type: choice
         options:
+        - https://github.com/nitheshd30/android_device_infinix_hot11s.git
         - https://github.com/nitheshd30/SHRP_Builder.git
       DEVICE_TREE_BRANCH:
         description: 'Custom Recovery Tree Branch' # Your Device Tree Branch, make sure it's right.
