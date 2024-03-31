@@ -161,14 +161,14 @@ jobs:
     - name: Renaming into TWRP
       run: |
         cd out/target/product/${{ github.event.inputs.DEVICE_NAME }}
-        mv ${{ github.event.inputs.BUILD_TARGET }}.img SHRP-${{ github.event.inputs.MANIFEST_BRANCH }}${{ github.event.inputs.DEVICE_NAME }}-${{ steps.props.outputs.date }}.img
-        echo "Done renaming into SHRP-${{ github.event.inputs.MANIFEST_BRANCH }}${{ github.event.inputs.DEVICE_NAME }}-${{ steps.props.outputs.date }}.img"
+        mv ${{ github.event.inputs.BUILD_TARGET }}.img SHRP-${{ github.event.inputs.MANIFEST_BRANCH }}-${{ github.event.inputs.DEVICE_NAME }}-${{ steps.props.outputs.date }}.img
+        echo "Done renaming into SHRP-${{ github.event.inputs.MANIFEST_BRANCH }}-${{ github.event.inputs.DEVICE_NAME }}-${{ steps.props.outputs.date }}.img"
       working-directory: ${{ steps.pwd.outputs.workdir }}
       
     - name: Upload to Release
       uses: ncipollo/release-action@v1.11.1
       with:
-        artifacts: workspace/out/target/product/${{ github.event.inputs.DEVICE_NAME }}/${{ github.event.inputs.MANIFEST_BRANCH }}*.img
+        artifacts: workspace/out/target/product/${{ github.event.inputs.DEVICE_NAME }}/SHRP-${{ github.event.inputs.MANIFEST_BRANCH }}-${{ github.event.inputs.DEVICE_NAME }}-${{ steps.props.outputs.date }}.img
         name: Unofficial-Alpha SHRP for ${{ github.event.inputs.DEVICE_NAME }} - Build ${{ steps.props.outputs.date }} / ${{ github.run_id }}
         draft: false
         prerelease: true
