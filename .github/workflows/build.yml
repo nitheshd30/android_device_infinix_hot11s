@@ -17,7 +17,7 @@ on:
         type: choice
         options:
         - v3_11.0
-        - twrp-11.0
+        - twrp-11
       DEVICE_TREE:
         description: 'Custom Recovery Tree' # Your already made Device Tree for TWRP
         required: true
