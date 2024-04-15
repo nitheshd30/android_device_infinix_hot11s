@@ -30,6 +30,7 @@ on:
         default: ''
         type: choice
         options:
+        - Test
         - master
         - shrp
         - fox_11.0
