@@ -9,6 +9,7 @@ on:
         type: choice
         options:
         - https://github.com/nitheshd30/SHRP_Manifest.git
+        - https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git
       MANIFEST_BRANCH:
         description: 'Manifest Branch'
         required: true
@@ -16,6 +17,7 @@ on:
         type: choice
         options:
         - v3_11.0
+        - twrp-11.0
       DEVICE_TREE:
         description: 'Custom Recovery Tree' # Your already made Device Tree for TWRP
         required: true
