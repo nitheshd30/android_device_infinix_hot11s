@@ -1,4 +1,4 @@
-name: SHRP Builder
+name: Test Builder
 on:
   workflow_dispatch:
     inputs:
